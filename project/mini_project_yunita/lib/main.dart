@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_yunita/pages/daftar_kos.dart';
 import 'package:mini_project_yunita/pages/halaman.dart';
+import 'package:mini_project_yunita/pages/listkos.dart';
 // import 'package:mini_project_yunita/routes.dart';
 import 'package:mini_project_yunita/screens/login/loginScreens.dart';
 import 'package:mini_project_yunita/theme.dart';
@@ -9,11 +11,12 @@ void main() async {
   runApp(MaterialApp(
     title: "KosApp Mobile",
     theme: theme(),
-    initialRoute: somePage.routeName,
+    initialRoute: loginScreen.routeName,
     routes: {
       loginScreen.routeName: (context) => loginScreen(),
-      // Tambahkan rute untuk SomePage
+      
       somePage.routeName:(context) => somePage(),
+      // listKos.routeName:(context) => listKos()
     },
   ));
 }
