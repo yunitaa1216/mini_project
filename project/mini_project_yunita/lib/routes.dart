@@ -10,5 +10,5 @@ final Map<String, WidgetBuilder> routes = {
   loginScreen.routeName: (context) => loginScreen(),
   registerScreen.routeName: (context) => registerScreen(),
   somePage.routeName:(context) => somePage(),
-  listKos.routeName:(context) => listKos()
+  // listKos.routeName:(context) => listKos()
 };
