@@ -105,16 +105,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _signIn() async {
+  try {
     String email = _emailController.text;
     String password = _passwordController.text;
 
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      print("User is successfully signedIn");
+      print("User is successfully signed in");
       Navigator.pushNamed(context, "/home");
     } else {
-      print("Some error happened");
+      print("Sign-in failed: User is null");
     }
+  } catch (e) {
+    print("Sign-in error: $e");
   }
+}
 }

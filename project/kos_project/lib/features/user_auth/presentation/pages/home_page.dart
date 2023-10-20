@@ -1,8 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kos_project/features/user_auth/presentation/pages/list_page.dart';
+import 'package:kos_project/features/user_auth/presentation/pages/profil_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +54,19 @@ class HomePage extends StatelessWidget {
             label: 'Profil',
           ),
         ],
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         onTap: (index) {
           // Berpindah ke halaman list atau profil sesuai dengan index button
+
+          setState(() {
+            _selectedIndex = index;
+          });
+
+          if (_selectedIndex == 0) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage()));
+          } else if (_selectedIndex == 1) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          }
         },
       ),
     );
