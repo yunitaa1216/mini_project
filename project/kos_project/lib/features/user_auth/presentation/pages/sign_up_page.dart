@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kos_project/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:kos_project/features/user_auth/presentation/pages/login_page.dart';
 import 'package:kos_project/features/user_auth/presentation/widgets/form_container_widget.dart';
@@ -33,10 +34,16 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("SignUp"),
+      body: Stack(
+        children: [
+          Center(
+          child: Image.asset('assets/images/5.png',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          ),
       ),
-      body: Center(
+      Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
@@ -44,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Text(
                 "Sign Up",
-                style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, fontFamily: GoogleFonts.openSans().fontFamily),
               ),
               SizedBox(
                 height: 30,
@@ -81,7 +88,7 @@ controller: _passwordController,
                   width: 200,
                   height: 45,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Color.fromARGB(159, 82, 54, 32),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
@@ -101,12 +108,14 @@ controller: _passwordController,
                         Navigator.pushAndRemoveUntil(
                             context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
                       },
-                      child: Text("Login", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),))
+                      child: Text("Login", style: TextStyle(color: Color.fromARGB(159, 82, 54, 32), fontWeight: FontWeight.bold),))
                 ],
               )
             ],
           ),
         ),
+      ),
+        ],
       ),
     );
   }

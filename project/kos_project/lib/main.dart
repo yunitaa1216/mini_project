@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
+// import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 import 'package:kos_project/features/user_auth/presentation/pages/login_page.dart';
 import 'package:kos_project/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:kos_project/features/user_auth/presentation/pages/home_page.dart';

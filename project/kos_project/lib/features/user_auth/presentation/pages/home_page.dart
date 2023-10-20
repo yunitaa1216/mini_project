@@ -1,6 +1,3 @@
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +13,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-         Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
+          Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
           SizedBox(height: 30,),
           GestureDetector(
             onTap: (){
@@ -33,10 +30,25 @@ class HomePage extends StatelessWidget {
             ),
             child: Center(child: Text("Sign out",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),),
           ),)
-
-
+          // Tambahkan kode bottom navigation di sini
         ],
-      )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'List',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ],
+        currentIndex: 0,
+        onTap: (index) {
+          // Berpindah ke halaman list atau profil sesuai dengan index button
+        },
+      ),
     );
   }
 }

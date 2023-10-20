@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kos_project/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:kos_project/features/user_auth/presentation/widgets/form_container_widget.dart';
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,10 +31,10 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Center(
-          child: Image.asset('assets/images/login.jpg',
+          child: Image.asset('assets/images/5.png',
           fit: BoxFit.cover,
-          width: 200,
-          height: 200,
+          width: double.infinity,
+          height: double.infinity,
           ),
         ),
           Center(
@@ -44,7 +45,14 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     "Login",
-                    style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, fontFamily: GoogleFonts.poppins().fontFamily),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Welcome to our app!",
+                    style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins().fontFamily),
                   ),
                   SizedBox(
                     height: 30,
@@ -67,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 200,
                       height: 45,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color.fromARGB(159, 82, 54, 32),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(child:Text("Login",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
@@ -83,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SignUpPage()), (route) => false);
                         },
-                        child: Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+                        child: Text("Sign Up",style: TextStyle(color: Color.fromARGB(159, 82, 54, 32),fontWeight: FontWeight.bold),),
                       )
                     ],
                   )

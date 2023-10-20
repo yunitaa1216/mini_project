@@ -26,28 +26,31 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/KosApp.png', // Ganti dengan path gambar Anda
-              width: 200, // Sesuaikan lebar gambar sesuai kebutuhan
-              height: 200, // Sesuaikan tinggi gambar sesuai kebutuhan
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Image.asset(
+              'assets/images/splash.png',
+              width: double.infinity,
+              height: 550,
+              fit: BoxFit.cover,
             ),
-            SizedBox(height: 20), // Spasi antara gambar dan teks
-            Text(
-              "Welcome To Flutter Firebase",
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+          ),
+          // SizedBox(height: 20), // Spasi antara gambar dan teks
+          // Text(
+          //   "Welcome To Flutter Firebase",
+          //   style: TextStyle(
+          //     color: Colors.blue,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }
