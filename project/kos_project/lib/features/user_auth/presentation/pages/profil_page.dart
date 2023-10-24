@@ -1,161 +1,187 @@
+// // import 'package:flutter/material.dart';
+// // import 'package:firebase_auth/firebase_auth.dart';
+// // import 'package:cloud_firestore/cloud_firestore.dart';
+
+// // class ProfilePage extends StatefulWidget {
+// //   const ProfilePage({super.key});
+
+// //   @override
+// //   State<ProfilePage> createState() => _ProfilePageState();
+// // }
+
+// // class _ProfilePageState extends State<ProfilePage> {
+// //   final FirebaseAuth _auth = FirebaseAuth.instance;
+// //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+// //   User? _user;
+// //   Map<String, dynamic>? _userData;
+
+// //   @override
+// //   void initState() {
+// //     super.initState();
+// //     _fetchUserData();
+// //   }
+
+// //   Future<void> _fetchUserData() async {
+// //     _user = _auth.currentUser;
+// //     if (_user != null) {
+// //       final userDataSnapshot =
+// //           await _firestore.collection('users').doc(_user!.uid).get();
+
+// //       if (userDataSnapshot.exists) {
+// //         setState(() {
+// //           _userData = userDataSnapshot.data() as Map<String, dynamic>;
+// //         });
+// //       }
+// //     }
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       appBar: AppBar(
+// //         title: Text("Profile"),
+// //       ),
+// //       body: _userData != null
+// //           ? Column(
+// //               mainAxisAlignment: MainAxisAlignment.center,
+// //               children: [
+// //                 Text("Username: ${_userData!['username']}"),
+// //                 Text("Email: ${_userData!['email']}"),
+// //                 // Tambahkan lebih banyak bidang data pengguna jika diperlukan
+// //               ],
+// //             )
+// //           : CircularProgressIndicator(), // Tampilkan indikator loading saat mengambil data
+// //     );
+// //   }
+// // }
+
 import 'package:flutter/material.dart';
-import 'package:kos_project/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:project_yunita/firebase_auth_service.dart';
+import 'package:project_yunita/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
-
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final FirebaseAuthService _authService = FirebaseAuthService();
-  String _email = '';
-  String _nama = '';
-  TextEditingController _newEmailController = TextEditingController();
-  TextEditingController _newPasswordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _newEmailController.dispose();
-    _newPasswordController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _email = _authService.currentUser?.email ?? '';
-    _nama = _authService.currentUser?.displayName ?? '';
-  }
-
-  void _changeEmail() async {
-    String newEmail = _newEmailController.text;
-    await _authService.changeEmail(newEmail);
-    setState(() {
-      _email = newEmail;
-    });
-    _newEmailController.clear();
-  }
-
-  void _changePassword() async {
-    String newPassword = _newPasswordController.text;
-    await _authService.changePassword(newPassword);
-    _newPasswordController.clear();
-  }
-
-  void _deleteAccount() async {
-    await _authService.deleteAccount();
-    // Tambahkan logika untuk kembali ke halaman login atau tampilan lain yang sesuai.
-  }
-
-  void _createAccount() async {
-    // Tambahkan logika untuk membuat akun baru berdasarkan data yang sesuai.
-  }
+  FirebaseAuthService _authService = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
+    User? user = _authService.getCurrentUser();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Page"),
+        title: Text('Profil'),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text(_nama),
-            subtitle: Text(_email),
-          ),
-          ListTile(
-            title: Text('Change Email'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Change Email'),
-                  content: TextField(
-                    controller: _newEmailController,
-                    decoration: InputDecoration(labelText: 'New Email'),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _changeEmail();
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Save'),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Change Password'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Change Password'),
-                  content: TextField(
-                    controller: _newPasswordController,
-                    decoration: InputDecoration(labelText: 'New Password'),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _changePassword();
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Save'),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Delete Account'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Delete Account'),
-                  content: Text('Are you sure you want to delete your account?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _deleteAccount();
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Delete'),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Create New Account'),
-            onTap: () {
-              // Implementasi untuk membuat akun baru berdasarkan data yang sesuai.
-              _createAccount();
-            },
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Email: ${user?.email ?? 'Belum masuk'}'),
+            Text('UID: ${user?.uid ?? 'Belum masuk'}'),
+            FutureBuilder<Map<String, dynamic>?>(
+              future: _authService.getUserData(user?.uid ?? ''),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Terjadi kesalahan: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  final userData = snapshot.data;
+                  return Column(
+                    children: [
+                      Text('Nama: ${userData?['nama'] ?? 'Tidak ada data'}'),
+                      // Tambahkan informasi profil lainnya di sini
+                    ],
+                  );
+                } else {
+                  return Text('Tidak ada data pengguna.');
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+
+// class ProfilePage extends StatefulWidget {
+//   @override
+//   _ProfilePageState createState() => _ProfilePageState();
+// }
+
+// class _ProfilePageState extends State<ProfilePage> {
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+//   User? _user;
+//   Map<String, dynamic>? _userData;
+//   TextEditingController _usernameController = TextEditingController();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetchUserData();
+//   }
+
+//   Future<void> _fetchUserData() async {
+//     _user = _auth.currentUser;
+//     if (_user != null) {
+//       final userDataSnapshot =
+//           await _firestore.collection('users').doc(_user!.uid).get();
+
+//       if (userDataSnapshot.exists) {
+//         setState(() {
+//           _userData = userDataSnapshot.data() as Map<String, dynamic>;
+//           _usernameController.text = _userData!['username'];
+//         });
+//       }
+//     }
+//   }
+
+//   Future<void> _updateUserData() async {
+//     if (_user != null) {
+//       await _firestore.collection('users').doc(_user!.uid).update({
+//         'username': _usernameController.text,
+//         // Tambahkan lebih banyak bidang data pengguna yang ingin diubah di sini
+//       });
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Profile"),
+//       ),
+//       body: _userData != null
+//           ? Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 TextFormField(
+//                   controller: _usernameController,
+//                   decoration: InputDecoration(labelText: 'Username'),
+//                 ),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     _updateUserData();
+//                   },
+//                   child: Text('Update Profile'),
+//                 ),
+//                 Text("Username: ${_userData!['username']}"),
+//                 Text("Email: ${_userData!['email']}"),
+//                 // Tambahkan lebih banyak bidang data pengguna jika diperlukan
+//               ],
+//             )
+//           : CircularProgressIndicator(), // Tampilkan indikator loading saat mengambil data
+//     );
+//   }
+// }

@@ -1,11 +1,9 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_yunita/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:project_yunita/features/user_auth/presentation/pages/login_page.dart';
+import 'package:project_yunita/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kos_project/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
-import 'package:kos_project/features/user_auth/presentation/pages/login_page.dart';
-import 'package:kos_project/features/user_auth/presentation/widgets/form_container_widget.dart';
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

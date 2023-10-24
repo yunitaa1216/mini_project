@@ -13,6 +13,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
+  String _searchText = '';
+  
+  void _searchKos(String text) {
+    // Cari kos berdasarkan teks yang dimasukkan oleh pengguna
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +35,8 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/download.jpg'),
-                fit: BoxFit.cover,
-              ),
+            //
             ),
-          ),
           Positioned(
             top: 100,
             left: 0,
@@ -49,10 +49,28 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
-                  SizedBox(height: 30,),
+                  // Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
+                  // SizedBox(height: 30,),
+
+                  // Tambahkan widget TextField untuk pencarian
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Cari kos berdasarkan lokasi, harga, fasilitas, dan lainnya',
+                      border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {
+                          // Lakukan pencarian
+                        },
+                      ),
+                    ),
+                    onChanged: (text) {
+                      _searchText = text;
+                      _searchKos(text);
+                    },
+                  ),
                 ],
               ),
             ),

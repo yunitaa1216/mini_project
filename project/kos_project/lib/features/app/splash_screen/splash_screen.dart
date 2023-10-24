@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+
 class SplashScreen extends StatefulWidget {
   final Widget? child;
-
   const SplashScreen({super.key, this.child});
 
   @override
@@ -10,47 +10,30 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
+
+@override
   void initState() {
     Future.delayed(
-      Duration(seconds: 5),
-      () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => widget.child!),
-          (route) => false,
-        );
-      },
+      Duration(seconds: 3),(){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => widget.child!), (route) => false);
+    }
     );
     super.initState();
   }
 
+
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Image.asset(
-              'assets/images/splash.png',
-              width: double.infinity,
-              height: 550,
-              fit: BoxFit.cover,
-            ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "Welcome To Flutter Firebase",
+          style: TextStyle(
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
           ),
-          // SizedBox(height: 20), // Spasi antara gambar dan teks
-          // Text(
-          //   "Welcome To Flutter Firebase",
-          //   style: TextStyle(
-          //     color: Colors.blue,
-          //     fontWeight: FontWeight.bold,
-          //   ),
-          // ),
-        ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

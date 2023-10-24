@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kos_project/features/user_auth/presentation/pages/sign_up_page.dart';
-import 'package:kos_project/features/user_auth/presentation/widgets/form_container_widget.dart';
-import '../../firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:flutter/material.dart';
+import 'package:project_yunita/features/user_auth/presentation/pages/sign_up_page.dart';
+import 'package:project_yunita/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../firebase_auth_implementation/firebase_auth_services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,10 +13,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   bool _isSigning = false;
+
+
+
   final FirebaseAuthService _auth = FirebaseAuthService();
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -24,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,20 +112,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _signIn() async {
-  try {
+
     String email = _emailController.text;
     String password = _passwordController.text;
 
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
-    if (user != null) {
-      print("User is successfully signed in");
+    if (user!= null){
+      print("User is successfully signedIn");
       Navigator.pushNamed(context, "/home");
-    } else {
-      print("Sign-in failed: User is null");
+    } else{
+      print("Some error happend");
     }
-  } catch (e) {
-    print("Sign-in error: $e");
+
   }
-}
 }
