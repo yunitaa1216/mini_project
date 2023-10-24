@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Models/Category/category.dart';
-import 'package:flutter_application_1/Models/errormsg.dart';
-import 'package:flutter_application_1/Service/apiService.dart';
-import 'package:flutter_application_1/UI/product/product_screen.dart';
-import 'package:flutter_application_1/Widget/Components/rounded_button.dart';
-import 'package:flutter_application_1/constants.dart';
+import 'package:tes_project/Models/Category/category.dart';
+import 'package:tes_project/Models/errormsg.dart';
+import 'package:tes_project/Service/apiService.dart';
+import 'package:tes_project/UI/product/product_screen.dart';
+import 'package:tes_project/Widget/Components/rounded_button.dart';
+import 'package:tes_project/constants.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 

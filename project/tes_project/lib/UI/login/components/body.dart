@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Models/errormsg.dart';
-import 'package:flutter_application_1/Service/apiService.dart';
-import 'package:flutter_application_1/UI/main/main.dart';
-import 'package:flutter_application_1/UI/signup/signup_screen.dart';
-import 'package:flutter_application_1/Widget/Components/formError.dart';
-import 'package:flutter_application_1/Widget/Components/rounded_button.dart';
-import 'package:flutter_application_1/constants.dart';
+import 'package:tes_project/Models/errormsg.dart';
+import 'package:tes_project/Service/apiService.dart';
+import 'package:tes_project/UI/main/main.dart';
+import 'package:tes_project/UI/signup/signup_screen.dart';
+import 'package:tes_project/Widget/Components/formError.dart';
+import 'package:tes_project/Widget/Components/rounded_button.dart';
+import 'package:tes_project/constants.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Body extends StatelessWidget {

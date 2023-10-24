@@ -18,29 +18,45 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomePage"),
+        title: Center(
+          child: Image.asset(
+            'assets/images/KosApp.png',
+            width: 250, // Atur lebar gambar sesuai kebutuhan
+            height: 200,  // Atur tinggi gambar sesuai kebutuhan
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
-          SizedBox(height: 30,),
-          GestureDetector(
-            onTap: (){
-              FirebaseAuth.instance.signOut();
-              Navigator.pushNamed(context, "/login");
-
-            },
-          child: Container(
-            height: 45,
-            width: 100,
+          Container(
             decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(10)
+              image: DecorationImage(
+                image: AssetImage('assets/images/download.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
-            child: Center(child: Text("Sign out",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),),
-          ),)
-          // Tambahkan kode bottom navigation di sini
+          ),
+          Positioned(
+            top: 100,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text("Welcome Home buddy!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
+                  SizedBox(height: 30,),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
