@@ -4,6 +4,8 @@ import 'package:project_yunita/features/user_auth/firebase_auth_implementation/f
 import 'package:project_yunita/features/user_auth/presentation/pages/login_page.dart';
 import 'package:project_yunita/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:avatar_view/avatar_view.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -15,6 +17,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
 
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -119,19 +122,25 @@ controller: _passwordController,
   }
 
   void _signUp() async {
-    String username = _usernameController.text;
-    String email = _emailController.text;
-    String password = _passwordController.text;
+  String username = _usernameController.text;
+  String email = _emailController.text;
+  String password = _passwordController.text;
 
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+  User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user!= null){
-      print("User is successfully created");
-      Navigator.pushNamed(context, "/home");
-    } else{
-      print("Some error happend");
-    }
+  if (user != null) {
+    print("User is successfully created");
 
+    // Simpan data pengguna ke Firestore
+    await firestore.collection('users').doc(user.uid).set({
+      'username': username,
+      'email': email,
+      // tambahkan data lain yang perlu Anda simpan di sini
+    });
+
+    Navigator.pushNamed(context, "/home");
+  } else {
+    print("Some error happened");
   }
-
+}
 }

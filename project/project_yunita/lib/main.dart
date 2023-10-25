@@ -12,10 +12,10 @@ Future main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: FirebaseOptions(
-        apiKey: "AIzaSyC1wyqMMwiEdC90lmTFzNfHb9FMsn8jqck",
-        appId: "1:70276721199:web:91beeec6e112989228f4da",
-        messagingSenderId: "70276721199",
-        projectId: "kosappproject",
+        apiKey: "AIzaSyD-a-K-NTKysSLw33s7hiDCch3ddMmLZ_4",
+        appId: "1:383736699664:android:c4b1714fc7fbe2b2036395",
+        messagingSenderId: "383736699664",
+        projectId: "firestore-070",
         // Your web Firebase config options
       ),
     );

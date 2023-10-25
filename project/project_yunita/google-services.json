@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "383736699664",
+    "project_id": "firestore-070",
+    "storage_bucket": "firestore-070.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383736699664:android:128faf5ba8b1535e036395",
+        "android_client_info": {
+          "package_name": "com.example.project_yunita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383736699664-pjd4paftjh6hvhg838qg03c64ab8nu1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-a-K-NTKysSLw33s7hiDCch3ddMmLZ_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383736699664-pjd4paftjh6hvhg838qg03c64ab8nu1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383736699664:android:c4b1714fc7fbe2b2036395",
+        "android_client_info": {
+          "package_name": "com.yunitaanggeraini_f55121070.firestore_070"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383736699664-pjd4paftjh6hvhg838qg03c64ab8nu1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-a-K-NTKysSLw33s7hiDCch3ddMmLZ_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383736699664-pjd4paftjh6hvhg838qg03c64ab8nu1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
