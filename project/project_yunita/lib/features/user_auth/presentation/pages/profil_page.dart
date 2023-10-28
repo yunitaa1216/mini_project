@@ -33,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
+  TextEditingController currentUsernameController = TextEditingController();
 
   @override
 Widget build(BuildContext context) {
@@ -70,7 +71,7 @@ Widget build(BuildContext context) {
         String newEmail = user?.email ?? '';
         String newUsername = '';
         String currentUsername = '';
-        
+
         return AlertDialog(
           title: Text('Update Email and Username'),
           content: Column(
@@ -82,10 +83,12 @@ Widget build(BuildContext context) {
                 enabled: false,
               ),
               TextField(
-                decoration: InputDecoration(labelText: 'Current Username'),
-                controller: TextEditingController(text: currentUsername), // Ganti currentUsername dengan nilai dari Firestore
-                enabled: false,
-              ),
+  decoration: InputDecoration(labelText: 'Current Username'),
+  controller: currentUsernameController,
+  enabled: false,
+  // Isi dengan username lama
+  // currentUsernameController.text = currentUsername;
+),
               TextField(
                 decoration: InputDecoration(labelText: 'New Email'),
                 onChanged: (value) {
@@ -109,11 +112,12 @@ Widget build(BuildContext context) {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                if (user != null) {
-                  updateUserData(user.uid, newEmail, newUsername);
-                }
-              },
+  Navigator.of(context).pop();
+  if (user != null) {
+    updateEmail(user, newEmail);
+    updateUserData(user.uid, newEmail, newUsername);
+  }
+},
               child: Text('Update'),
             ),
           ],
@@ -184,6 +188,15 @@ ElevatedButton(
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
     await user.updateEmail(newEmail);
+  }
+}
+
+void updateEmail(User user, String newEmail) async {
+  try {
+    await user.updateEmail(newEmail);
+  } catch (e) {
+    // Handle errors, misalnya, email sudah digunakan atau kesalahan lainnya
+    print("Gagal memperbarui alamat email: $e");
   }
 }
 
